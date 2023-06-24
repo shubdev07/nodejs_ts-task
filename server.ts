@@ -23,7 +23,7 @@ app.get(
       const data = await getSkuDetails(sku);
       res.json(data);
     } catch (err) {
-      res.status(500).json({ error: "Not found" });
+      res.status(500).json({ error: "Some error occurred" });
     }
   }
 );
