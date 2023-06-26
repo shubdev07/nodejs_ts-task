@@ -1,4 +1,5 @@
-import getSkuDetails from "./helper-functions";
+import path from "path";
+import getSkuDetails from "../src/api/v1/SKU/SKU.service";
 
 describe("getSkuDetails", () => {
   beforeAll(() => {
@@ -10,12 +11,12 @@ describe("getSkuDetails", () => {
       { sku: "abc", type: "order", qty: 10 },
       { sku: "xyz", type: "refund", qty: 10 },
     ]);
-    const actual = jest.requireActual("./readFile.ts");
+    const actual = jest.requireActual("../src/libs/readFile.ts");
     const spy = jest.spyOn(actual, "default");
 
     spy.mockImplementation((filepath) => {
       return new Promise((resolve, reject) => {
-        if (filepath === "./stock.json") {
+        if (filepath === path.join(__dirname, "..", "src", "stock.json")) {
           resolve(stockMockData);
         } else {
           resolve(transactionsMockData);

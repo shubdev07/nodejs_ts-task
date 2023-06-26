@@ -1,8 +1,15 @@
-import readFileAsync from "./readFile";
+import path from "path";
+import readFileAsync from "../../../libs/readFile";
 
 // Specify the file path
-const stockFilePath = "./stock.json";
-const transactionFilePath = "./transactions.json";
+const stockFilePath = path.join(__dirname, "..", "..", "..", "stock.json");
+const transactionFilePath = path.join(
+  __dirname,
+  "..",
+  "..",
+  "..",
+  "transactions.json"
+);
 
 interface Stock {
   sku: string;
@@ -50,6 +57,7 @@ const getSkuDetails = async (
     }
     return result;
   } catch (err) {
+    console.log(err);
     throw err;
   }
 };
